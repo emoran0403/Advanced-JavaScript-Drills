@@ -29,3 +29,37 @@
 // }
 
 //**********************************************************Now that we have exercised hoisting, let's practice scoping.********************************************************** */
+
+let fruits = ["Cherries", "Blueberries", "Raspberries"];
+
+function printFruits() {
+  let favFruit = fruits[2];
+  //* when favFruit is declared in the scope of this function (regardless of any value assignment), it is only available to this function, so printFavFruit will run into a reference error
+  console.log(fruits[0]);
+
+  function printFavFruit() {
+    console.log(favFruit);
+    let leastFav = "no least fav fruit";
+  }
+  //console.log(leastFav);
+}
+
+printFruits();
+//printFavFruit();
+
+//*Save and refresh the browser -- Why was the printFavFruit function able to log favFruit?
+//*because the printFruit function was called, which assigns a value to favFruit.  now that it ihas a value, the printFavFruit function is able to log that value
+//* when the orderof the function calls are switched, this does not happen
+
+somefunction();
+function somefunction() {
+  console.log("Eric");
+}
+
+function anotherFunction() {
+  alert("this is another function");
+}
+
+let runAnotherFunction = anotherFunction;
+
+runAnotherFunction(); //* this must be called after it is declared and assigned
